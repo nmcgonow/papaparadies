@@ -1,26 +1,180 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg:       #FFFBF0;
+  --surface:  #FFFFFF;
+  --black:    #0D0D0D;
+  --yellow:   #FFD60A;
+  --red:      #FF3B30;
+  --blue:     #0057FF;
+  --muted:    #6B6B6B;
+  --border:   3px solid #0D0D0D;
+  --shadow:   6px 6px 0px #0D0D0D;
+  --shadow-sm: 4px 4px 0px #0D0D0D;
+  --shadow-lg: 8px 8px 0px #0D0D0D;
+  --radius:   16px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--black);
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
 }
+
+/* ═══════════════════════════════════════════════════
+   BRUTALIST COMPONENTS
+═══════════════════════════════════════════════════ */
+
+.brutal-card {
+  background: var(--surface);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.brutal-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.brutal-btn {
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  border-radius: 12px;
+  font-weight: 800;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+}
+.brutal-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #0D0D0D;
+}
+.brutal-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #0D0D0D;
+}
+
+.brutal-tag {
+  border: 2px solid var(--black);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 3px 12px;
+  display: inline-block;
+}
+
+/* ═══════════════════════════════════════════════════
+   INTRO ANIMATION KEYFRAMES
+═══════════════════════════════════════════════════ */
+
+@keyframes walkIn {
+  0%   { transform: translateX(-380px) rotate(-4deg); opacity: 0; }
+  60%  { transform: translateX(10px) rotate(2deg); opacity: 1; }
+  100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+}
+@keyframes walkBob {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50%       { transform: translateY(-10px) rotate(1.5deg); }
+}
+@keyframes shakeMild {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-5px) rotate(-1.5deg); }
+  75%       { transform: translateX(5px) rotate(1.5deg); }
+}
+@keyframes flyFromRight {
+  0%   { transform: translate(115vw, -55vh) rotate(400deg) scale(0.4); opacity: 0; }
+  18%  { opacity: 1; }
+  68%  { transform: translate(0, -18px) rotate(-12deg) scale(1.18); }
+  84%  { transform: translate(0, 7px) rotate(6deg) scale(0.93); }
+  100% { transform: translate(0, 0) rotate(8deg) scale(1); opacity: 1; }
+}
+@keyframes flyFromLeft {
+  0%   { transform: translate(-115vw, -55vh) rotate(-400deg) scale(0.4); opacity: 0; }
+  18%  { opacity: 1; }
+  68%  { transform: translate(0, -18px) rotate(12deg) scale(1.18); }
+  84%  { transform: translate(0, 7px) rotate(-6deg) scale(0.93); }
+  100% { transform: translate(0, 0) rotate(-8deg) scale(1); opacity: 1; }
+}
+@keyframes bubblePop {
+  0%   { transform: scale(0) translateY(10px); opacity: 0; }
+  65%  { transform: scale(1.1) translateY(-3px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+@keyframes zoomPapalapapp {
+  0%   { transform: rotate(-5deg) scale(1);  opacity: 1; }
+  65%  { transform: rotate(-3deg) scale(16); opacity: 1; }
+  90%  { transform: rotate(0deg)  scale(26); opacity: 1; }
+  100% { transform: rotate(0deg)  scale(34); opacity: 0; }
+}
+@keyframes bgToYellow {
+  0%   { background: #FFFBF0; }
+  35%  { background: #FFFBF0; }
+  80%  { background: #FFD60A; }
+  100% { background: #FFD60A; }
+}
+@keyframes impactRing {
+  0%   { transform: translate(-50%, 50%) scale(0.3); opacity: 0.8; }
+  100% { transform: translate(-50%, 50%) scale(2.5); opacity: 0; }
+}
+@keyframes bangPop {
+  0%   { transform: rotate(var(--rot, -12deg)) scale(0); opacity: 0; }
+  55%  { transform: rotate(var(--rot, -12deg)) scale(1.25); opacity: 1; }
+  100% { transform: rotate(var(--rot, -12deg)) scale(1); opacity: 1; }
+}
+@keyframes heroEntry {
+  0%   { transform: translateY(30px) scale(0.8); opacity: 0; }
+  55%  { transform: translateY(-6px) scale(1.03); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes superEntry {
+  0%   { transform: translateY(30px) scale(0.75); opacity: 0; }
+  55%  { transform: translateY(-5px) scale(1.03); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes paradiseFlyIn {
+  0%   { transform: translateY(80px) scale(0.84); opacity: 0; }
+  55%  { transform: translateY(-8px) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════
+   HOMEPAGE KEYFRAMES
+═══════════════════════════════════════════════════ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes xpGrow {
+  from { width: 0%; }
+  to   { width: 67%; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes popIn {
+  0%   { transform: scale(0.8); opacity: 0; }
+  70%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes marqueeTicker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.xp-bar { animation: xpGrow 1.8s ease-out 1s both; }
+.float   { animation: float 3s ease-in-out infinite; }
+.pulse   { animation: pulse 2s ease-in-out infinite; }
