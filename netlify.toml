@@ -4,3 +4,21 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "http://papaparadies.de/*"
+  to = "https://papaparadies.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.papaparadies.de/*"
+  to = "https://papaparadies.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.papaparadies.de/*"
+  to = "https://papaparadies.de/:splat"
+  status = 301
+  force = true
