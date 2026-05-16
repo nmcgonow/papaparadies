@@ -368,7 +368,7 @@ function Footer() {
         </div>
         <div className="flex gap-6 text-sm font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>
           <a href="#" className="hover:text-white transition-colors">Datenschutz</a>
-          <a href="#" className="hover:text-white transition-colors">Impressum</a>
+          <a href="/impressum" className="hover:text-white transition-colors">Impressum</a>
           <a href="#" className="hover:text-white transition-colors">Affiliate-Info</a>
           <a href="#" className="hover:text-white transition-colors">Kontakt</a>
         </div>
